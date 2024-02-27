@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Link, useRoutes } from "react-router-dom";
-import AuthGoogle from "./components/auth/AuthGoogle";
-import TripList from "./components/tripList/TripList";
+import AuthGoogle from "./components/pages/auth/AuthGoogle";
+import TripList from "./components/pages/tripList/TripList";
 import Logout from "./components/logout/Logout";
 import { RecoilRoot } from "recoil";
 
@@ -12,11 +12,10 @@ const App: React.FC = () => {
     {
       path: "/trips",
       element: (
-        <>
-          <Logout />
-          <div>
+        < >
+          <Logout>
             <TripList />
-          </div>
+          </Logout>
         </>
       ),
     },

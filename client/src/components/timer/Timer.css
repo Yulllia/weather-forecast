@@ -1,0 +1,35 @@
+.timer {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .col-4 {
+    width: 25%;
+    float: left;
+  }
+  
+  .box {
+    font-weight: 300;
+    padding: 10px;
+  }
+  
+  .col-4:last-child .box {
+    border-right-color: transparent;
+  }
+  
+  .box p {
+    font-size: calc(12px + 2vmin);
+    color: white;
+    font-weight: 800;
+    margin: 0;
+  }
+  
+  .text {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: white;
+  }

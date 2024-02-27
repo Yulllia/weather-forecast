@@ -26,6 +26,9 @@
   -webkit-transition: opacity .35s;
   
 }
+.selected-card {
+  color: white;
+}
 
 .button-logout {
 	text-decoration: none;

@@ -4,12 +4,14 @@ import { WeatherI } from "../../interfaces/interface";
 import { getDaysOfWeek, importSVG } from "../../utils/utils";
 import { useRecoilValue } from "recoil";
 import { selectedCardState } from "../../state/AtomSelectedCard";
+import Timer from "../timer/Timer";
 
 function TodayForecast() {
   const selectedCard = useRecoilValue(selectedCardState);
   const [foreCastDay, setForeCastDay] = useState<WeatherI>();
   const [icon, setIcon] = useState(null);
   const weekDay = foreCastDay && getDaysOfWeek(foreCastDay.datetime);
+  const temperature = Math.floor(foreCastDay?.temp ?? 0);
 
   useEffect(() => {
     const loadIcon = async () => {
@@ -44,15 +46,20 @@ function TodayForecast() {
   }, [selectedCard.city]);
 
   return (
-    <div>
-      <h4>{weekDay}</h4>
-      <p>
-        {icon && (
-          <img src={icon} alt={foreCastDay?.icon} width={50} height={50} />
-        )}{" "}
-        <span>{foreCastDay?.temp}°</span>
-      </p>
-      <p>{selectedCard.city}</p>
+    <div className="forecast-container">
+      <div className="cloud x1"/>
+      <div className="cloud x2"/>
+      <div className="cloud x3"/>
+      <div className="cloud x4"/>
+        <h4 className="today-title">{weekDay}</h4>
+        <p className="today-temperature">
+          {icon && (
+            <img src={icon} alt={foreCastDay?.icon} width={50} height={60} />
+          )}{" "}
+          <span>{temperature}<span className="celcium">&deg;C</span></span>
+        </p>
+        <p className="selected-city">{selectedCard.city}</p>
+        <Timer startDate={selectedCard.startDate}/>
     </div>
   );
 }

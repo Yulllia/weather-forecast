@@ -32,6 +32,7 @@ function ForeCast(props: { selectedCard: Card }) {
 
     fetchData();
   }, [endDate, selectedCard?.city, selectedCard.endDate, selectedCard.startDate, startDate]);
+
   return (
     <div>
       {selectedCard.city && <h3 className="weather-duration">Weak</h3>}

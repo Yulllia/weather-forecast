@@ -1,5 +1,5 @@
 import "./AuthGoogle.css"
-import IconGoogle from "../../assets/google_icon.webp"
+import IconGoogle from "../../../assets/google_icon.webp"
 
 function AuthGoogle() {
 
