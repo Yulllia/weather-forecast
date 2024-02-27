@@ -14,12 +14,12 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const user = req.user; 
-    console.log(user)
     res.redirect(url.format({
       pathname:"http://localhost:3001/trips",
       query:{
         displayName: user.displayName,
-        image: user.image
+        image: user.image,
+        googleId: user.googleId
       },
     })
     );

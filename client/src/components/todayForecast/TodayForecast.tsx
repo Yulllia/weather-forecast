@@ -5,11 +5,13 @@ import { getDaysOfWeek, importSVG } from "../../utils/utils";
 import { useRecoilValue } from "recoil";
 import { selectedCardState } from "../../state/AtomSelectedCard";
 import Timer from "../timer/Timer";
+import Spinner from "../spinner/Spinner";
 
 function TodayForecast() {
   const selectedCard = useRecoilValue(selectedCardState);
   const [foreCastDay, setForeCastDay] = useState<WeatherI>();
   const [icon, setIcon] = useState(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const weekDay = foreCastDay && getDaysOfWeek(foreCastDay.datetime);
   const temperature = Math.floor(foreCastDay?.temp ?? 0);
 
@@ -25,6 +27,7 @@ function TodayForecast() {
   }, [foreCastDay]);
 
   useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -36,14 +39,20 @@ function TodayForecast() {
         }
         const weatherDay = await response.json();
         setForeCastDay(weatherDay.days[0]);
-        console.log(weatherDay);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false)
       }
     };
 
     fetchData();
   }, [selectedCard.city]);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
 
   return (
     <div className="forecast-container">

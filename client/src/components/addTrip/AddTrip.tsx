@@ -11,7 +11,7 @@ function AddTrip() {
 
   return (
     <>
-      <div onClick={openModal} className="add-trip">
+      <div onClick={openModal} className="add-trip card-item ">
         {" "}
         <span className="plus">+</span>
         <br /> <span className="text">Add Trip</span>

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
@@ -131,4 +131,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: white;
   background-color: rgb(45, 138, 236);
   border: unset;
+}
+.save:disabled {
+  pointer-events: none;
+  opacity: 0.7;
 }

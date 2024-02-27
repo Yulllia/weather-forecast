@@ -17,6 +17,10 @@ const ListSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  googleId: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('list', ListSchema)

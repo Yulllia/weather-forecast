@@ -2,7 +2,7 @@
   display: flex;
   margin: 2px;
   padding: 1rem;
-  min-width: 150px;
+  min-width: 250px;
   min-height: 200px;
   @media (min-width: 40rem) {
     width: 35%;
@@ -33,7 +33,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: 5px;
+  padding: 13px;
 }
 
 .card-image {
@@ -45,7 +45,6 @@
   filter: contrast(70%);
   width: 100%;
   object-fit: cover;
-  height: 100px;
   overflow: hidden;
   position: relative;
   transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);

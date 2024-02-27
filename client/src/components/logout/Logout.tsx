@@ -7,25 +7,24 @@ import { useRecoilValue } from "recoil";
 
 const Logout: React.FC<LogoutProps> = ({children}) => {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get("displayName") ?? localStorage.getItem("displayName");
   const image = searchParams.get("image") ?? localStorage.getItem("image");
+  const googleId = searchParams.get("googleId")
   const selectedCard = useRecoilValue(selectedCardState);
 
   const handleLogout = () => {
-    // Clear data from localStorage
-    localStorage.removeItem("displayName");
     localStorage.removeItem("image");
+    localStorage.removeItem("googleId");
   };
 
   useEffect(() => {
-    if (name && image) {
-      localStorage.setItem("displayName", name);
+    if (image && googleId) {
       localStorage.setItem("image", image);
+      localStorage.setItem("googleId", googleId);
     }
     return () => {
       handleLogout();
     };
-  }, [image, name]);
+  }, [googleId, image]);
 
   return (
     <>

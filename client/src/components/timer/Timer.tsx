@@ -11,7 +11,6 @@ export default function Timer(props: { startDate: string }) {
 
   const getTime = (startDate: string) => {
     const time = Date.parse(startDate) - Date.now();
-    console.log(time)
 
     setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
     setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
@@ -30,25 +29,25 @@ export default function Timer(props: { startDate: string }) {
       <div className="col-4">
         <div className="box">
           <p id="day">{days < 10 ? "0" + days : days}</p>
-          <span className="text">Days</span>
+          <span className="text-date">Days</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
           <p id="hour">{hours < 10 ? "0" + hours : hours}</p>
-          <span className="text">Hours</span>
+          <span className="text-date">Hours</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
           <p id="minute">{minutes < 10 ? "0" + minutes : minutes}</p>
-          <span className="text">Minutes</span>
+          <span className="text-date">Minutes</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
           <p id="second">{seconds < 10 ? "0" + seconds : seconds}</p>
-          <span className="text">Seconds</span>
+          <span className="text-date">Seconds</span>
         </div>
       </div>
     </div>

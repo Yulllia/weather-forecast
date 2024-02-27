@@ -1,12 +1,13 @@
 const { Router, response } = require("express");
 const router = Router();
-const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const { userService } = require("../services/user");
 const List = require("../models/List");
 
 router.get("/trips", async (req, res) => {
   try {
-    const lists = await List.find();
+    const { googleId } = req.query; 
+    console.log(googleId)
+    const query = { googleId };
+    const lists = await List.find(query);
     res.json(lists);
   } catch (error) {
     console.error("Error fetching lists:", error);

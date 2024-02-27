@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import AuthGoogle from "./components/pages/auth/AuthGoogle";
 import TripList from "./components/pages/tripList/TripList";
 import Logout from "./components/logout/Logout";

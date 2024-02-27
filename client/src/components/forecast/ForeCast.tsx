@@ -24,28 +24,31 @@ function ForeCast(props: { selectedCard: Card }) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const weather = await response.json();
-        setForeCast(weather.days)
+        setForeCast(weather.days);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [endDate, selectedCard?.city, selectedCard.endDate, selectedCard.startDate, startDate]);
+  }, [
+    endDate,
+    selectedCard?.city,
+    selectedCard.endDate,
+    selectedCard.startDate,
+    startDate,
+  ]);
 
   return (
     <div>
       {selectedCard.city && <h3 className="weather-duration">Weak</h3>}
-      <ul className=" weather-list">
-        {foreCast.map((day: WeatherI, index) => {
-          return (
-            <ForeCastCard
-              day={day}
-              key={index}
-            />
-          );
-        })}
-      </ul>
+      <div className="weather-list-container">
+        <ul className="weather-list">
+          {foreCast.map((day: WeatherI, index) => {
+            return <ForeCastCard day={day} key={index} />;
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

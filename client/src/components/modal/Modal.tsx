@@ -9,11 +9,12 @@ function Modal(props: {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { setModalVisible } = props;
-  const [startDate, setStartDate] = useState("Select date");
-  const [endDate, setEndDate] = useState("Select date");
+  const [startDate, setStartDate] = useState<string>();
+  const [endDate, setEndDate] = useState<string>();
   const [selectedValue, setSelectedValue] = useState<City | string>(
     "Please select a city"
   );
+  const googleId = localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
   const [today, maxDateString] = useMemo(() => {
     const today = new Date().toISOString().slice(0, 10);
@@ -24,11 +25,16 @@ function Modal(props: {
   }, []);
 
   const saveTrip = async () => {
+    if (!startDate || !endDate || typeof selectedValue === "string") {
+      return;
+    }
+
     const trip = {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
       city: typeof selectedValue === "object" && selectedValue.city,
       image: typeof selectedValue === "object" && selectedValue.image,
+      googleId
     };
 
     try {
@@ -111,6 +117,7 @@ function Modal(props: {
             </label>
             <input
               type="date"
+              placeholder="Select date"
               id="endDate"
               name="endDate"
               className="flatpickr-input"
@@ -126,7 +133,13 @@ function Modal(props: {
           <button onClick={closeModal} className="button cancel">
             Cancel
           </button>
-          <button className="button save" onClick={saveTrip}>
+          <button
+            disabled={
+              !startDate || !endDate || typeof selectedValue === "string"
+            }
+            className="button save"
+            onClick={saveTrip}
+          >
             Save
           </button>
         </div>

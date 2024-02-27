@@ -10,6 +10,8 @@ import { searchState } from "../../../state/AtomSearch";
 import ForeCast from "../../forecast/ForeCast";
 import TodayForecast from "../../todayForecast/TodayForecast";
 import { selectedCardState } from "../../../state/AtomSelectedCard";
+import { compareDates } from "../../../utils/utils";
+import Spinner from "../../spinner/Spinner";
 
 function TripList() {
   const cardWidth = 150;
@@ -26,6 +28,8 @@ function TripList() {
   const [selectedCard, setSelectedCard] = useRecoilState<Card>(
     selectedCardState
   );
+  const [loading, setLoading] = useState<boolean>(false);
+  const googleId = localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
 
   useEffect(() => {
@@ -49,9 +53,12 @@ function TripList() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API}/trips`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API}/trips?googleId=${googleId}`
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -59,17 +66,23 @@ function TripList() {
         const data = await response.json();
         setList(data);
         setTripSaved(false);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [tripSaved]);
+  }, [googleId, tripSaved]);
 
   useEffect(() => {
     handleSearch();
   }, [search, list, tripSaved]);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   const scroll = (scrollOffset: number) => {
     if (containerRef.current) {
@@ -84,7 +97,10 @@ function TripList() {
     const filtered = list?.filter((trip: Card) =>
       trip.city.toLowerCase().includes(search.toLowerCase())
     );
-    setFilterTrips(filtered);
+    const sortedData = filtered
+      .slice()
+      .sort((a, b) => compareDates(a.startDate, b.startDate));
+    setFilterTrips(sortedData);
   };
 
   return (
@@ -126,14 +142,11 @@ function TripList() {
               );
             })}
           </ul>
-          <div className="add-trip-container">
-            <AddTrip />
-          </div>
+          <div className="add-trip-container">{googleId && <AddTrip />}</div>
         </div>
-
         {selectedCard._id && <ForeCast selectedCard={selectedCard} />}
       </div>
-      {selectedCard._id && <TodayForecast /> }
+      {selectedCard._id && <TodayForecast />}
     </div>
   );
 }

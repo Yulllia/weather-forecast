@@ -28,6 +28,10 @@
 }
 .selected-card {
   color: white;
+  
+  @media (max-width: 900px) {
+    color: black;
+  }
 }
 
 .button-logout {

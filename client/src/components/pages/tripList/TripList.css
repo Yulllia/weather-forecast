@@ -1,12 +1,16 @@
 .container-app {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 }
 
 .list-container {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 .list-container > h3 {
   text-decoration: none;
@@ -15,15 +19,21 @@
 }
 .list-container .cards {
   display: flex;
-  max-width: min-content;
+  width: 650px;
   flex-wrap: nowrap;
   padding-left: 0;
   overflow-x: auto;
   flex-direction: row;
   list-style: none;
+  @media (max-width: 500px) {
+    width: 305px;
+  }
+  @media (max-width: 300px) {
+    width: 200px;
+  }
 }
 .list-container .selected-card {
-  width: 800px;
+  padding: 0 10px 0 0;
 }
 
 .list-container .card-item {
@@ -37,7 +47,20 @@
   }
 }
 .list-container .card-item .add-trip-container {
-  width: 250px;
+  display: flex;
+  margin: 2px;
+  padding: 1rem;
+  min-width: 250px;
+  min-height: 200px;
+  @media (min-width: 40rem) {
+    width: 35%;
+  }
+  @media (min-width: 56rem) {
+    width: 25%;
+  }
+  @media (max-width: 900px) {
+   width: 310px; 
+  }
 }
 .list-container .not-found {
   display: flex;
@@ -50,7 +73,7 @@
   align-items: center;
   margin: 0 25px;
 
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     display: block
   }
 }
