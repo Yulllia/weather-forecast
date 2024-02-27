@@ -1,0 +1,134 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 80%;
+  padding: 20px;
+  overflow: hidden;
+}
+.modal-content .form-container {
+  padding-top: 40px;
+  margin-bottom: 50px;
+}
+.modal-content .form-container > .block-input {
+  padding-bottom: 10px;
+}
+.modal-content .form-container .select-city {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+.select-city:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.modal-content .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.modal-content h3 {
+  margin: 0;
+}
+.modal > .modal-content > .divider {
+  border: 1px solid rgb(240, 240, 240);
+  margin: 0 -20px;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.modal-content .label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.modal-content .label > span {
+  color: red;
+  width: 10px;
+  height: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.3;
+  color: #bdbdbd; /* Arrow background color */
+}
+
+.modal-content .flatpickr-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  color: #bdbdbd;
+}
+
+.modal-content .flatpickr-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.modal-content .button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 17px;
+}
+
+.modal-content .button {
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 0.25em;
+}
+.modal-content .cancel:hover {
+  background-color: #b6b8b8;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+.modal-content .save:hover {
+  background-color: #82d0f1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+.modal-content .button:first-child {
+  margin-right: 6px;
+}
+.modal-content .cancel {
+  color: black;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+}
+.modal-content .save {
+  color: white;
+  background-color: rgb(45, 138, 236);
+  border: unset;
+}

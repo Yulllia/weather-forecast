@@ -1,0 +1,46 @@
+.logout-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.navigation {
+  width: 100%;
+  background-color: black;
+}
+
+.image-user {
+  width: 42px;
+  border-radius: 50px;
+  float: left;
+  margin-left: 12px;
+}
+
+.logout {
+  font-size: 16px;
+  padding-left: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: opacity .45s;
+  -webkit-transition: opacity .35s;
+  
+}
+
+.button-logout {
+	text-decoration: none;
+  align-items: center;
+	float: right;
+  padding: 3px;
+  display: flex;
+  margin: 10px;
+  color: white;
+  width: fit-content;
+  transition: width .35s;
+  -webkit-transition: width .35s;
+  overflow: hidden
+}
+
+.button-logout {
+  text-decoration: none;
+}

@@ -1,0 +1,12 @@
+.weather-day {
+  margin-right: 30px;
+}
+
+.weak {
+  color: rgb(2 2 2 / 41%);
+  font-size: 14px;
+}
+.temperature {
+  color: #14146c;
+  font-size: 15px;
+}

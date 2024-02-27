@@ -1,0 +1,10 @@
+.weather-duration {
+  font-weight: normal;
+  margin-left: 23px;
+}
+.weather-list {
+    width: 90%;
+    overflow-x: auto;
+    display: flex;
+    text-align: center;
+}

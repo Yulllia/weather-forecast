@@ -1,0 +1,75 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.list-container > h3 {
+  text-decoration: none;
+  font-weight: normal;
+  margin: 20px 0 0 23px;
+}
+.list-container .cards {
+  display: flex;
+  max-width: min-content;
+  flex-wrap: nowrap;
+  padding-left: 0;
+  overflow-x: auto;
+  flex-direction: row;
+  list-style: none;
+}
+.list-container .selected-card {
+  width: 600px;
+}
+
+.list-container .card-item {
+  display: flex;
+  padding: 10px 10px 10px 0;
+  @media (min-width: 40rem) {
+    width: 50%;
+  }
+  @media (min-width: 56rem) {
+    width: 33.3333%;
+  }
+}
+.list-container .card-item .add-trip-container {
+  width: 250px;
+}
+.list-container .not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-container .cards-container {
+  display: flex;
+  align-items: center;
+  margin: 0 25px;
+
+  @media (max-width: 500px) {
+    display: block
+  }
+}
+.scroll-buttons {
+  padding-left: 23px;
+}
+
+.btn-arrow {
+  background-color: #9199a3; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 16px; 
+}
+.btn-arrow:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.btn-arrow-left {
+  margin-right: 5px;
+}
+
+.btn-arrow:hover {
+  background-color: #9ba3ad; 
+}

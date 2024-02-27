@@ -1,0 +1,44 @@
+{
+    "cities": [
+      {
+        "city": "New York",
+        "image": "https://media.istockphoto.com/id/1454217037/photo/statue-of-liberty-and-new-york-city-skyline-with-manhattan-financial-district-world-trade.webp?b=1&s=170667a&w=0&k=20&c=ILAXN43qdlPTT8ljbbT7Hwp95AQJxKTNygWhsQ3qzO4="
+      },
+      {
+        "city": "Paris",
+        "image": "https://www.travelandleisure.com/thmb/f-3j5QnS8FRCIPQGeitCxVDKVJA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/3-paris-social-niche1115-470f7989143d49f7a3def0ac3940988d.jpg"
+      },
+      {
+        "city": "Tokyo",
+        "image": "https://www.japan-guide.com/thumb/destination_tokyo.jpg"
+      },
+      {
+        "city": "Sydney",
+        "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTWffxkVjSJ7v6xwacFNRcqpCiFFgDzcf5YEtxOqUuyfI0u7tmp5OppZQxtBGbvsRxz7XhGm-KARjq_ZknW18Cvw29yJITElKJ_rHSgWCk"
+      },
+      {
+        "city": "London",
+        "image": "https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k="
+      },
+      {
+        "city": "Lviv",
+        "image": "https://visitukraine.today/media/blog/previews/4nMRDteRHm19lq6GpOVSjYE01UwSuJTQpJGFik6k.webp"
+      },
+      {
+        "city": "Kyiv",
+        "image": "https://turpoisk.ua/images/blog/kyiv/kyiv-maidan-nezalezhnosti.jpg"
+      },
+      {
+        "city": "Washington",
+        "image": "https://www.travelandleisure.com/thmb/T4h8XPaBn5i44nab5kkrw3FJZeI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-dc-lead-image-WDCTG1223-dea2e651476348bb8e249882f63909ed.jpg"
+      },
+      {
+        "city": "Warsaw",
+        "image": "https://warsawtour.pl/wp-content/uploads/2023/03/Panorama-Warszawy-z-Widok-Towers-fot.-Filip-Kwiatkowski-1.jpg"
+      },
+      {
+        "city": "Stockholm",
+        "image": "https://www.moyaeuropa.com.ua/wp-content/uploads/2016/08/Stockholm-1024x682.jpg"
+      }
+    ]
+  }
