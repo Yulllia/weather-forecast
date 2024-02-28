@@ -15,7 +15,7 @@ import Spinner from "../../spinner/Spinner";
 import { useSearchParams } from "react-router-dom";
 
 function TripList() {
-  const cardWidth = 150;
+  const cardWidth = 260;
 
   const [list, setList] = useState<Card[]>([]);
   const [filterTrips, setFilterTrips] = useState<Card[]>(list);
@@ -31,28 +31,9 @@ function TripList() {
   );
   const [loading, setLoading] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const googleId = searchParams.get("googleId") || localStorage.getItem("googleId");
+  const googleId =
+    searchParams.get("googleId") || localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
-
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (container) {
-      const handleScroll = () => {
-        setScrollState({
-          isPrevEnabled: container.scrollLeft > 0,
-          isNextEnabled:
-            container.scrollLeft !==
-            container.scrollWidth - container.clientWidth,
-        });
-      };
-
-      container.addEventListener("scroll", handleScroll);
-      return () => {
-        container.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -77,6 +58,29 @@ function TripList() {
 
     fetchData();
   }, [googleId, tripSaved]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (container) {
+      const handleScroll = () => {
+        setScrollState({
+          isPrevEnabled: container.scrollLeft > 0,
+          isNextEnabled:
+            container.scrollLeft !==
+            container.scrollWidth - container.clientWidth,
+        });
+      };
+      console.log(container.scrollLeft > 0);
+      console.log(
+        container.scrollLeft !== container.scrollWidth - container.clientWidth
+      );
+      container.addEventListener("scroll", handleScroll);
+      return () => {
+        container.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
 
   const handleSearch = () => {
     const filtered = list?.filter((trip: Card) =>
@@ -130,10 +134,9 @@ function TripList() {
         </div>
         <div className="cards-container">
           <ul
-            className={`cards ${selectedCard._id ? "selected-card" : ""}`}
-            style={
-              filterTrips.length === 1 ? { width: "300px" } : { width: "650px" }
-            }
+            className={`cards ${selectedCard._id ? "selected-card" : ""} ${
+              filterTrips.length === 1 ? "one-trip-width" : ""
+            }`}
             ref={containerRef}
           >
             {filterTrips.map((card: Card) => {

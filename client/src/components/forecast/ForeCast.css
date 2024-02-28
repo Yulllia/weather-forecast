@@ -1,5 +1,5 @@
 .weather-list-container {
-  margin: 0 25px;
+  margin: 0  25px 0 25px;
 }
 
 .weather-duration {
@@ -7,7 +7,7 @@
   margin: 10px 0 0 23px;
 }
 .weather-list {
-    width: 70%;
+    width: 80%;
     overflow-x: auto;
     padding: 0;
     margin-top: 0;

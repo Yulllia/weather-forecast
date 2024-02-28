@@ -26,14 +26,14 @@
   flex-direction: row;
   list-style: none;
   @media (max-width: 500px) {
-    width: 305px;
-  }
-  @media (max-width: 300px) {
-    width: 200px;
+    width: 100%;
   }
 }
 .list-container .selected-card {
   padding: 0 10px 0 0;
+}
+.list-container .one-trip-width {
+  width: 300px;
 }
 
 .list-container .card-item {
@@ -59,7 +59,7 @@
     width: 25%;
   }
   @media (max-width: 900px) {
-   width: 310px; 
+    width: 310px;
   }
 }
 .list-container .not-found {
@@ -74,7 +74,8 @@
   margin: 0 25px;
 
   @media (max-width: 700px) {
-    display: block
+    display: block;
+    margin: 0 25px;
   }
 }
 .scroll-buttons {
@@ -82,13 +83,13 @@
 }
 
 .btn-arrow {
-  background-color: #9199a3; 
-  color: #fff; 
-  border: none; 
-  padding: 10px 15px; 
-  border-radius: 5px; 
+  background-color: #9199a3;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px; 
+  font-size: 16px;
 }
 .btn-arrow:disabled {
   pointer-events: none;
@@ -99,5 +100,5 @@
 }
 
 .btn-arrow:hover {
-  background-color: #9ba3ad; 
+  background-color: #9ba3ad;
 }
