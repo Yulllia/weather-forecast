@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 
 const Logout: React.FC<LogoutProps> = ({children}) => {
   const [searchParams] = useSearchParams();
-  const image = searchParams.get("image") ?? localStorage.getItem("image");
+  const image = searchParams.get("image") || localStorage.getItem("image");
   const googleId = searchParams.get("googleId")
   const selectedCard = useRecoilValue(selectedCardState);
 

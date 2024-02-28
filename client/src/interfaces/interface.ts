@@ -12,6 +12,8 @@ export interface Card {
   endDate: string;
   image: string;
   startDate: string;
+  googleId?: string;
+  defaultValue?: string;
 }
 export interface WeatherI {
   tempmax: number;
@@ -21,12 +23,10 @@ export interface WeatherI {
   icon: string;
 }
 
-
 export interface City {
   city: string;
   image: string;
 }
-
 
 export interface LogoutProps {
   children?: ReactNode;

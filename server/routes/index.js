@@ -4,9 +4,14 @@ const List = require("../models/List");
 
 router.get("/trips", async (req, res) => {
   try {
-    const { googleId } = req.query; 
-    console.log(googleId)
-    const query = { googleId };
+    const { googleId } = req.query;
+    const query = {
+      $or: [
+        { googleId },
+        { defaultValue: "static" }  // Filter by defaultValue: "static" if googleId is not present
+      ],
+    };
+
     const lists = await List.find(query);
     res.json(lists);
   } catch (error) {

@@ -19,8 +19,12 @@ const ListSchema = new mongoose.Schema({
   },
   googleId: {
     type: String,
-    required: true,
+    required: false,
+  },
+  defaultValue: {
+    type: String,
+    required: false,
   },
 });
 
-module.exports = mongoose.model('list', ListSchema)
+module.exports = mongoose.model("list", ListSchema);

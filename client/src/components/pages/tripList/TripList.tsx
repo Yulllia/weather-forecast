@@ -12,6 +12,7 @@ import TodayForecast from "../../todayForecast/TodayForecast";
 import { selectedCardState } from "../../../state/AtomSelectedCard";
 import { compareDates } from "../../../utils/utils";
 import Spinner from "../../spinner/Spinner";
+import { useSearchParams } from "react-router-dom";
 
 function TripList() {
   const cardWidth = 150;
@@ -29,7 +30,8 @@ function TripList() {
     selectedCardState
   );
   const [loading, setLoading] = useState<boolean>(false);
-  const googleId = localStorage.getItem("googleId");
+  const [searchParams] = useSearchParams();
+  const googleId = searchParams.get("googleId") || localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
 
   useEffect(() => {
@@ -76,6 +78,16 @@ function TripList() {
     fetchData();
   }, [googleId, tripSaved]);
 
+  const handleSearch = () => {
+    const filtered = list?.filter((trip: Card) =>
+      trip.city.toLowerCase().includes(search.toLowerCase())
+    );
+    const sortedData = filtered
+      .slice()
+      .sort((a, b) => compareDates(a.startDate, b.startDate));
+    setFilterTrips(sortedData);
+  };
+
   useEffect(() => {
     handleSearch();
   }, [search, list, tripSaved]);
@@ -91,16 +103,6 @@ function TripList() {
         behavior: "smooth",
       });
     }
-  };
-
-  const handleSearch = () => {
-    const filtered = list?.filter((trip: Card) =>
-      trip.city.toLowerCase().includes(search.toLowerCase())
-    );
-    const sortedData = filtered
-      .slice()
-      .sort((a, b) => compareDates(a.startDate, b.startDate));
-    setFilterTrips(sortedData);
   };
 
   return (
@@ -129,6 +131,9 @@ function TripList() {
         <div className="cards-container">
           <ul
             className={`cards ${selectedCard._id ? "selected-card" : ""}`}
+            style={
+              filterTrips.length === 1 ? { width: "300px" } : { width: "650px" }
+            }
             ref={containerRef}
           >
             {filterTrips.map((card: Card) => {
