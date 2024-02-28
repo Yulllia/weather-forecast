@@ -15,7 +15,7 @@ import Spinner from "../../spinner/Spinner";
 import { useSearchParams } from "react-router-dom";
 
 function TripList() {
-  const cardWidth = 260;
+  const cardWidth = 200;
 
   const [list, setList] = useState<Card[]>([]);
   const [filterTrips, setFilterTrips] = useState<Card[]>(list);
@@ -34,6 +34,24 @@ function TripList() {
   const googleId =
     searchParams.get("googleId") || localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
+  const container = containerRef.current;
+  
+  useEffect(() => {
+    if (container) {
+      const handleScroll = () => {
+        setScrollState({
+          isPrevEnabled: container.scrollLeft > 0,
+          isNextEnabled:
+            container.scrollLeft !==
+            container.scrollWidth - container.clientWidth,
+        });
+      };
+      container.addEventListener("scroll", handleScroll);
+      return () => {
+        container.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [container]);
 
   useEffect(() => {
     setLoading(true);
@@ -58,29 +76,6 @@ function TripList() {
 
     fetchData();
   }, [googleId, tripSaved]);
-
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (container) {
-      const handleScroll = () => {
-        setScrollState({
-          isPrevEnabled: container.scrollLeft > 0,
-          isNextEnabled:
-            container.scrollLeft !==
-            container.scrollWidth - container.clientWidth,
-        });
-      };
-      console.log(container.scrollLeft > 0);
-      console.log(
-        container.scrollLeft !== container.scrollWidth - container.clientWidth
-      );
-      container.addEventListener("scroll", handleScroll);
-      return () => {
-        container.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
 
   const handleSearch = () => {
     const filtered = list?.filter((trip: Card) =>
