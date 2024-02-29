@@ -44,6 +44,7 @@ function Modal(props: {
           "Content-Type": "application/json",
         },
       })
+      setTripSaved(true);
       closeModal();
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -125,7 +126,7 @@ function Modal(props: {
         </form>
         <div className="divider" />
         <div className="button-container">
-          <button onClick={closeModal} className="button cancel">
+          <button data-testid="close-modal" onClick={closeModal} className="button cancel">
             Cancel
           </button>
           <button

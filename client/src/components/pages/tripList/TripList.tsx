@@ -75,7 +75,7 @@ function TripList() {
     };
 
     fetchData();
-  }, [googleId, setTripSaved, tripSaved]);
+  }, [googleId, tripSaved]);
 
   const handleSearch = () => {
     const filtered = list?.filter((trip: Card) =>
