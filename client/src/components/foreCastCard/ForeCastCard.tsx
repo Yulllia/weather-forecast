@@ -18,7 +18,7 @@ function ForeCastCard(props: { day: WeatherI }) {
   }, [day.icon]);
 
   return (
-    <div className="weather-day">
+    <div className="weather-day" data-testid="forecast-card">
       <p className="weak">{weekDay}</p>
       {icon && <img src={icon} alt={day.icon} width={50} height={50}/>}
       <p className="temperature">{day.tempmax}°/{day.tempmin}°</p>

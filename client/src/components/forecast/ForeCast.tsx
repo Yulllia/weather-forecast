@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./ForeCast.css";
 import { Card, WeatherI } from "../../interfaces/interface";
 import ForeCastCard from "../foreCastCard/ForeCastCard";
+import axios from "axios";
 
 function ForeCast(props: { selectedCard: Card }) {
   const { selectedCard } = props;
@@ -16,15 +17,16 @@ function ForeCast(props: { selectedCard: Card }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
+        await axios.get(
           `${process.env.REACT_APP_WEATHER_LINK}/${selectedCard?.city}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${process.env.REACT_APP_WEATHER_API}&contentType=json`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const weather = await response.json();
-        setForeCast(weather.days);
+        )
+        .then((response) => {
+          setForeCast(response.data.days);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -40,7 +42,7 @@ function ForeCast(props: { selectedCard: Card }) {
   ]);
 
   return (
-    <div>
+    <div data-testid="week-forecast">
       {selectedCard.city && <h3 className="weather-duration">Weak</h3>}
       <div className="weather-list-container">
         <ul className="weather-list">

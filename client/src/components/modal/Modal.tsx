@@ -4,6 +4,7 @@ import "./Modal.css";
 import { City } from "../../interfaces/interface";
 import { useSetRecoilState } from "recoil";
 import { addTripState } from "../../state/AtomAdd";
+import axios from "axios";
 
 function Modal(props: {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,19 +39,11 @@ function Modal(props: {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/addTrip`, {
-        method: "POST",
+      await axios.post(`${process.env.REACT_APP_API}/addTrip`, trip, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(trip),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      await response.json();
-      setTripSaved(true);
+      })
       closeModal();
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -72,7 +65,7 @@ function Modal(props: {
   };
 
   return (
-    <div className="modal" onClick={handleOutsideClick}>
+    <div data-testid="modal" className="modal" onClick={handleOutsideClick}>
       <div
         className="modal-content"
         onClick={(e) => {
@@ -105,6 +98,7 @@ function Modal(props: {
               id="startDate"
               onChange={onChangeStartDate}
               name="startDate"
+              data-testid="start-date"
               className="flatpickr-input"
               defaultValue={startDate}
               min={today}
@@ -118,6 +112,7 @@ function Modal(props: {
             <input
               type="date"
               placeholder="Select date"
+              data-testid="end-date"
               id="endDate"
               name="endDate"
               className="flatpickr-input"
@@ -138,6 +133,7 @@ function Modal(props: {
               !startDate || !endDate || typeof selectedValue === "string"
             }
             className="button save"
+            data-testid="save-button"
             onClick={saveTrip}
           >
             Save

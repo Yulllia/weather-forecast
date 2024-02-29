@@ -8,7 +8,6 @@ export default function Timer(props: { startDate: string }) {
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
 
-
   const getTime = (startDate: string) => {
     const time = Date.parse(startDate) - Date.now();
 
@@ -28,25 +27,33 @@ export default function Timer(props: { startDate: string }) {
     <div className="timer" role="timer">
       <div className="col-4">
         <div className="box">
-          <p id="day">{days < 10 ? "0" + days : days}</p>
+          <p id="day" data-testid="day">
+            {days < 10 ? "0" + days : days}
+          </p>
           <span className="text-date">Days</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
-          <p id="hour">{hours < 10 ? "0" + hours : hours}</p>
+          <p id="hour" data-testid="hour">
+            {hours < 10 ? "0" + hours : hours}
+          </p>
           <span className="text-date">Hours</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
-          <p id="minute">{minutes < 10 ? "0" + minutes : minutes}</p>
+          <p id="minute" data-testid="minute">
+            {minutes < 10 ? "0" + minutes : minutes}
+          </p>
           <span className="text-date">Minutes</span>
         </div>
       </div>
       <div className="col-4">
         <div className="box">
-          <p id="second">{seconds < 10 ? "0" + seconds : seconds}</p>
+          <p id="second" data-testid="second">
+            {seconds < 10 ? "0" + seconds : seconds}
+          </p>
           <span className="text-date">Seconds</span>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { selectedCardState } from "../../state/AtomSelectedCard";
 import Timer from "../timer/Timer";
 import Spinner from "../spinner/Spinner";
+import axios from "axios";
 
 function TodayForecast() {
   const selectedCard = useRecoilValue(selectedCardState);
@@ -27,22 +28,24 @@ function TodayForecast() {
   }, [foreCastDay]);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_WEATHER_LINK}/${selectedCard.city}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_WEATHER_API}&contentType=json`
-        );
+        await axios
+          .get(
+            `${process.env.REACT_APP_WEATHER_LINK}/${selectedCard.city}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_WEATHER_API}&contentType=json`
+          )
+          .then((response) => {
+            setForeCastDay(response.data.days[0]);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const weatherDay = await response.json();
-        setForeCastDay(weatherDay.days[0]);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -53,22 +56,24 @@ function TodayForecast() {
     return <Spinner />;
   }
 
-
   return (
-    <div className="forecast-container">
-      <div className="cloud x1"/>
-      <div className="cloud x2"/>
-      <div className="cloud x3"/>
-      <div className="cloud x4"/>
-        <h4 className="today-title">{weekDay}</h4>
-        <p className="today-temperature">
-          {icon && (
-            <img src={icon} alt={foreCastDay?.icon} width={50} height={60} />
-          )}{" "}
-          <span>{temperature}<span className="celcium">&deg;C</span></span>
-        </p>
-        <p className="selected-city">{selectedCard.city}</p>
-        <Timer startDate={selectedCard.startDate}/>
+    <div className="forecast-container" data-testid="today-forecast">
+      <div className="cloud x1" />
+      <div className="cloud x2" />
+      <div className="cloud x3" />
+      <div className="cloud x4" />
+      <h4 className="today-title">{weekDay}</h4>
+      <p className="today-temperature">
+        {icon && (
+          <img src={icon} alt={foreCastDay?.icon} width={50} height={60} />
+        )}{" "}
+        <span>
+          {temperature}
+          <span className="celcium">&deg;C</span>
+        </span>
+      </p>
+      <p className="selected-city">{selectedCard.city}</p>
+      <Timer startDate={selectedCard.startDate} />
     </div>
   );
 }

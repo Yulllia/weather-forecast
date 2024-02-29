@@ -13,6 +13,7 @@ import { selectedCardState } from "../../../state/AtomSelectedCard";
 import { compareDates } from "../../../utils/utils";
 import Spinner from "../../spinner/Spinner";
 import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 function TripList() {
   const cardWidth = 200;
@@ -35,7 +36,7 @@ function TripList() {
     searchParams.get("googleId") || localStorage.getItem("googleId");
   const setTripSaved = useSetRecoilState(addTripState);
   const container = containerRef.current;
-  
+
   useEffect(() => {
     if (container) {
       const handleScroll = () => {
@@ -57,15 +58,14 @@ function TripList() {
     setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_API}/trips?googleId=${googleId}`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setList(data);
+        await axios
+          .get(`${process.env.REACT_APP_API}/trips?googleId=${googleId}`)
+          .then((response) => {
+            setList(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         setTripSaved(false);
         setLoading(false);
       } catch (error) {
@@ -75,7 +75,7 @@ function TripList() {
     };
 
     fetchData();
-  }, [googleId, tripSaved]);
+  }, [googleId, setTripSaved, tripSaved]);
 
   const handleSearch = () => {
     const filtered = list?.filter((trip: Card) =>
@@ -107,7 +107,7 @@ function TripList() {
   return (
     <div className={`${selectedCard._id ? "container-app" : ""}`}>
       <div className="list-container">
-        <h3>
+        <h3 data-testid="weather">
           Weather <b>Forecast</b>
         </h3>
         <Search handleSearch={handleSearch} />
@@ -133,6 +133,7 @@ function TripList() {
               filterTrips.length === 1 ? "one-trip-width" : ""
             }`}
             ref={containerRef}
+            data-testid="trip-list"
           >
             {filterTrips.map((card: Card) => {
               return (

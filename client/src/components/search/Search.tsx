@@ -19,13 +19,14 @@ function Search(props: { handleSearch: any }) {
         <input
           type="text"
           name="search"
+          data-testid="search"
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
           placeholder="Search your trip"
           onKeyDown={handleKeyPress}
           className="search-input"
         />
-        <div className="search-button" onClick={handleSearch}>
+        <div data-testid="search-icon" className="search-button" onClick={handleSearch}>
         <img src={SearchIcon} alt="Description" width={20} height={20}/>
         </div>
       </form>

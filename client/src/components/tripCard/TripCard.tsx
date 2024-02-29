@@ -17,6 +17,7 @@ function TripCard(props: {
       <li className="card-item">
         <div
           className={`card ${isSelected ? "selected" : ""}`}
+          data-testid="select-card"
           onClick={() => setSelectedCard(cardItem)}
         >
           <img className="card-image" src={cardItem.image} alt="trips" />
