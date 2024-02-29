@@ -1,15 +1,41 @@
-# Getting Started with Create React App
+## Project Structure
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is divided into two main folders: `server` and `client`.
 
-## Available Scripts
+### Server
 
-In the project directory, you can run:
+The `server` folder contains the backend code. To run the backend locally, follow these steps:
+
+1. Open a terminal.
+2. Navigate to the `server` directory using the `cd` command:
+   ```bash
+   cd server
+3. Install the necessary dependencies using: `npm install`
+4. Start the backend server using: `npm run dev`
+
+This will run the server on http://localhost:3000.
+
+
+### Client
+The client folder contains the frontend code.
+
+1. Open a terminal.
+2. Navigate to the `client` directory using the `cd` command:
+   ```bash
+   cd client
+3. Install the necessary dependencies using: `npm install`
+4. Start the frontend using: `npm run start`
+
+This will run the frontend on http://localhost:3001.
+
+## All Available Scripts For Frontend Code
+
+In the client directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
